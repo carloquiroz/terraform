@@ -12,3 +12,16 @@ pool:
 steps:
 - script: echo Performance Terraforms!
   displayName: 'Run a one-line script'
+- task: TerraformCLI@0
+  inputs:
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/azure-terraform/kubernetes'
+    backendType: 'azurerm'
+    backendServiceArm: 'azure-resource-cqv'
+    ensureBackend: true
+    backendAzureRmResourceGroupName: 'terraform-backend-cqv'
+    backendAzureRmResourceGroupLocation: 'westeurope'
+    backendAzureRmStorageAccountName: 'storageacctaforo255cqv'
+    backendAzureRmContainerName: 'storageacctaforo255cqvcontainer'
+    backendAzureRmKey: 'kubernetes-dev.tfstate'
+    allowTelemetryCollection: true
